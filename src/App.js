@@ -10,7 +10,7 @@ import PublicRoute from './components/PublicRoute';
 function App() {
   return(
   <Switch>
-    <PublicRoute>
+    <PublicRoute path ='/signin'>
       <SignIn  path='/signin'/>
     </PublicRoute>
     <PrivateRoute path ='/' >
