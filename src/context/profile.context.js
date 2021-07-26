@@ -14,7 +14,7 @@ export const ProfileProvider=({children})=>{
         let userRef;
         const authUnSub=auth.onAuthStateChanged(authObj=>{
 
-            if(auth)
+            if(authObj)
             {
                 userRef=database.ref(`/profiles/${authObj.uid}`);
                 userRef.on('value',(snap)=>{
@@ -37,6 +37,7 @@ export const ProfileProvider=({children})=>{
                     userRef.off()
                 }
                 setProfile(null)
+                setIsLoading(false)
             }
         })
         return ()=>{
