@@ -10,3 +10,10 @@ export function getInitalName(name)
         return splitName[0][0]
     
 }
+
+export function transformToArrWithId(snapval)
+{
+    return snapval?Object.keys(snapval).map(roomId=>{
+        return {...snapval[roomId],id:roomId}
+    }):[]
+}
