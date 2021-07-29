@@ -7,12 +7,26 @@ import { auth } from '../../../misc/firebase'
 import ProfileAvatar from '../../dashboard/ProfileAvatar'
 import Presence from '../../Presence'
 import IconBtnControl from './IconBtnControl'
+import ImageBtnModal from './ImageBtnModal'
 import ProfileInfoBtnModal from './ProfileInfoBtnModal'
+
+const renderFileMessage=(file)=>{
+    if(file.contentType.includes('image'))
+    {
+        return (
+            <div className="height-220">
+                <ImageBtnModal src={file.url} fileName={file.name} />
+            </div>
+        )
+    }
+
+    return <a href={file.url}> Download {file.name}</a>
+}
 
 
 const MessageItem = ({message,handleAdmin,handleLike,handleDelete}) => {
 
-    const {author,createdAt,text,likes,likeCount}=message
+    const {author,createdAt,text,file,likes,likeCount}=message
     const isMobile=useMediaQuery(('(max-width:992px)'))
 
 
@@ -60,9 +74,12 @@ const MessageItem = ({message,handleAdmin,handleLike,handleDelete}) => {
                  onClick={()=>{handleDelete(message.id)}}
                 />}
             </div>
+            
 
             <div>
-                <span className="world-breal-all">{text}</span>
+                {text&&<span className="world-breal-all">{text}</span>}
+                {file && renderFileMessage(file)}
+                               
             </div>
 
 
