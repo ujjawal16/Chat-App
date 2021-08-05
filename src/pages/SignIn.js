@@ -22,21 +22,17 @@ const SignIn = () => {
             
         } catch (error) {
             Alert.error(error.message,4000)
-        }
-
-
-        
-        
+        }   
     }
-
 
    const onFacebookSignIn=()=>{
      signInProvider(new firebase.auth.FacebookAuthProvider())
    }
    const onGoogleSignIn=()=>{
        signInProvider(new firebase.auth.GoogleAuthProvider())
-}
 
+}
+ 
     return (
         <Container>
             <Grid className="mt-page">
